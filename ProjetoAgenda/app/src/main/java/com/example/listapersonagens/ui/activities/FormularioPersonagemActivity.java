@@ -32,6 +32,11 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
     private EditText campoNome;
     private EditText campoAltura;
     private EditText campoNascimento;
+    private EditText campoTelefone;
+    private EditText campoEndereco;
+    private EditText campoCep;
+    private EditText camporg;
+    private EditText campogenero;
     private final PersonagemDAO dao = new PersonagemDAO();
     private Personagem personagem;
 
@@ -83,6 +88,11 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
         campoNome.setText(personagem.getNome());
         campoAltura.setText(personagem.getAltura());
         campoNascimento.setText(personagem.getNascimento());
+        campoTelefone.setText(personagem.getTelefone());
+        campoCep.setText(personagem.getCep());
+        campoEndereco.setText(personagem.getEndereco());
+        camporg.setText(personagem.getEndereco());
+        campogenero.setText(personagem.getGenero());
     }
 
     //salva o conteudo ao clicar
@@ -114,6 +124,11 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
         campoNome = findViewById(R.id.editText_nome);
         campoAltura = findViewById(R.id.editText_altura);
         campoNascimento = findViewById(R.id.editText_nascimento);
+        campogenero = findViewById(R.id.editText_genero);
+        camporg = findViewById(R.id.editText_rg);
+        campoCep = findViewById(R.id.editText_cep);
+        campoEndereco = findViewById(R.id.editText_endereco);
+        campoTelefone = findViewById(R.id.editText_telefone);
 
         //configura a formatação com imports de outra biblioteca
         SimpleMaskFormatter smfAltura = new SimpleMaskFormatter("N,NN");
@@ -124,6 +139,21 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
         SimpleMaskFormatter smfNascimento = new SimpleMaskFormatter("NN/NN/NNNN");
         MaskTextWatcher mtwNascimento = new MaskTextWatcher(campoNascimento, smfNascimento);
         campoNascimento.addTextChangedListener(mtwNascimento);
+
+        //configura a formatação layout com imports de outra biblioteca
+        SimpleMaskFormatter smfRg = new SimpleMaskFormatter("NN.NNN.NNN-N");
+        MaskTextWatcher mtwRG = new MaskTextWatcher(camporg, smfRg);
+        camporg.addTextChangedListener(mtwRG);
+
+        //configura a formatação layout com imports de outra biblioteca
+        SimpleMaskFormatter smfcep = new SimpleMaskFormatter("NNNNN-NN");
+        MaskTextWatcher mtwcep = new MaskTextWatcher(campoCep, smfcep);
+        campoCep.addTextChangedListener(mtwcep);
+
+        //configura a formatação layout com imports de outra biblioteca
+        SimpleMaskFormatter smftelefone = new SimpleMaskFormatter("(NN)NNNNN-NNNN");
+        MaskTextWatcher mtwtelefone = new MaskTextWatcher(campoTelefone, smftelefone);
+        campoTelefone.addTextChangedListener(mtwtelefone);
     }
 
     //usado para dar conteudo aos campos e transforma em string
@@ -131,9 +161,19 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
         String nome = campoNome.getText().toString();
         String altura = campoAltura.getText().toString();
         String nascimento = campoNascimento.getText().toString();
+        String telefone = campoTelefone.getText().toString();
+        String rg = camporg.getText().toString();
+        String cep = campoCep.getText().toString();
+        String genero = campogenero.getText().toString();
+        String endereco = campoEndereco.getText().toString();
 
         personagem.setNome(nome);
         personagem.setAltura(altura);
         personagem.setNascimento(nascimento);
+        personagem.setEndereco(endereco);
+        personagem.setRg(rg);
+        personagem.setCep(cep);
+        personagem.setTelefone(telefone);
+        personagem.setGenero(genero);
     }
 }
