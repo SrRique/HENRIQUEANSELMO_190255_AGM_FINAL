@@ -91,7 +91,7 @@ public class FormularioPersonagemActivity extends AppCompatActivity {
         campoTelefone.setText(personagem.getTelefone());
         campoCep.setText(personagem.getCep());
         campoEndereco.setText(personagem.getEndereco());
-        camporg.setText(personagem.getEndereco());
+        camporg.setText(personagem.getRg());
         campogenero.setText(personagem.getGenero());
     }
 
